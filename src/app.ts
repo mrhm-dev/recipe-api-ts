@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
+import recipeRoutes from './services/recipe/routes';
 import NotFound from './error/NotFound';
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 // routes
+app.use('/api/recipes', recipeRoutes);
 app.get('/health', (_req: Request, res: Response, next: NextFunction) => {
 	return res.status(200).json({
 		health: 'OK',
